@@ -48,11 +48,19 @@ data.forEach(function(ufoReport) {
 
 //buttons
 var button = d3.select("#button");
-var form = d3.select("#form");
 
 button.on("click", runEnter);
-form.on("submit", runEnter);
 
 function runEnter() {
     d3.event.preventDefault();
+
+    var inputElement = d3.select("#ufo-input");
+    var inputDate = inputElement.property("value");
+    console.log(inputDate)
+
+    var filterData = tableData.filter(ufoReport => ufoReport.datetime === inputDate);
+    console.log(filterData);
+    
+    var tbody = d3.select("tbody")
+    tbody.html("");
 }
