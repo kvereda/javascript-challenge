@@ -56,11 +56,19 @@ function runEnter() {
 
     var inputElement = d3.select("#ufo-input");
     var inputDate = inputElement.property("value");
-    console.log(inputDate)
+    console.log(inputDate);
 
     var filterData = tableData.filter(ufoReport => ufoReport.datetime === inputDate);
     console.log(filterData);
     
-    var tbody = d3.select("tbody")
+    var tbody = d3.select("tbody");
     tbody.html("");
-}
+// loop for filtered data
+    filterData.forEach(function(ufoReport){
+        var row = tbody.append("tr");
+        Object.entries(ufoReport).forEach(function([key, value]){
+            var cell = row.append("td").text(value);
+
+        });
+    }); 
+};
